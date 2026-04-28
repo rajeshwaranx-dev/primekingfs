@@ -27,21 +27,21 @@ BOT_STATS_TEXT = os.environ.get("BOTS_STATS_TEXT","<b>BOT UPTIME </b>\n{uptime}"
 USER_REPLY_TEXT = os.environ.get("USER_REPLY_TEXT", "ʜɪ, ɪ ᴀᴍ ᴍᴀᴅᴇ ʙʏ @trinityXmods\n\nᴏɴʟʏ ᴀᴅᴍɪɴꜱ ᴄᴀɴ ᴜꜱᴇ ᴛʜᴇ ʙᴏᴛ ᴅɪʀᴇᴄᴛʟʏ ʙʏ ꜱᴇɴᴅɪɴɢ ꜰɪʟᴇꜱ — ᴏᴛʜᴇʀꜱ ᴄᴀɴɴᴏᴛ ꜱᴇɴᴅ ᴀɴʏᴛʜɪɴɢ ʜᴇʀᴇ.\n\n📦 ꜱᴏᴜʀᴄᴇ ᴄᴏᴅᴇ: https://github.com/Trinity-Mods/File-Store-Bot")
 
 # Paste your bot token here (get it from https://t.me/BotFather)
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "") 
+TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "8760595657:AAEeOsU_WNI3YqmT69Jf6Txum2I8eQbfORM") 
 # Provide the API ID associated with your Telegram application (from https://my.telegram.org/apps)
-APP_ID = int(os.environ.get("APP_ID", ""))
+APP_ID = int(os.environ.get("APP_ID", "24174966"))
 # Provide the API Hash linked to your Telegram application (available at https://my.telegram.org/apps)
-API_HASH = os.environ.get("API_HASH", "")
+API_HASH = os.environ.get("API_HASH", "6ab4767496241d51e617d8ddb01b968e")
 # Enter the channel ID of the database channel where all files will be stored.
-CHANNEL_ID = int(os.environ.get("CHANNEL_ID", ""))
+CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1003862477663"))
 # Enter your personal Telegram user ID (you can get it by sending '/id' to https://t.me/MissRose_bot).
-OWNER_ID = int(os.environ.get("OWNER_ID", ""))
+OWNER_ID = int(os.environ.get("OWNER_ID", "7092784248"))
 #port set to default 8080, change according to your will.
 PORT = os.environ.get("PORT", "8080")
 # Enter your MongoDB connection URL. You can use a free cloud database from MongoDB Atlas.
-DB_URL = os.environ.get("DB_URL", "")
+DB_URL = os.environ.get("DB_URL", "mongodb+srv://bharath:bharathx@cluster0.7zcyu4q.mongodb.net/?appName=Cluster0")
 # Enter the name of your MongoDB database.
-DB_NAME = os.environ.get("DB_NAME", "")
+DB_NAME = os.environ.get("DB_NAME", "bharath")
 
 # Set the number of worker threads for the bot. To avoid sleeping issues and improve performance, keep it above 50 (recommended).
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "50"))
