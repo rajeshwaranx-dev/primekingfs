@@ -46,11 +46,17 @@ DB_NAME = os.environ.get("DB_NAME", "bharath")
 # Set the number of worker threads for the bot. To avoid sleeping issues and improve performance, keep it above 50 (recommended).
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "50"))
 # Message displayed to users when they click the Start button or send the /start command.
-START_MSG = os.environ.get("START_MESSAGE", "ʜᴇʟʟᴏ ᴛʜᴇʀᴇ {mention}!!🌚\n\nɪ ᴀᴍ ᴅᴇꜱɪɢɴᴇᴅ ᴛᴏ ꜱʜᴀʀᴇ ꜰɪʟᴇꜱ ᴛʜʀᴏᴜɢʜ ꜱᴘᴇᴄɪᴀʟ ʟɪɴᴋꜱ!! 🪄\n\nɪ ᴀᴍ ᴅᴇꜱɪɢɴᴇᴅ ʙʏ @trinityXmods ᴏɴ ᴛᴇʟᴇɢʀᴀᴍ. 🎀")
-# Enter your Telegram username (without @). A public username is required to use this bot.
+
+START_MSG = os.environ.get("START_MESSAGE", "⚠️ This is a File Store Bot\n\nYou cannot search movies here.\n\n🎬 To download movies, go to our channel and check the channel Links.\n\n📢 Channel: https://t.me/Tamilmov_Linkz")
 OWNER_TAG = os.environ.get("OWNER_TAG", "the_universal_being")
 # Time (in seconds) after which messages will be auto-deleted. Use 0 to keep messages permanently.
 TIME = int(os.environ.get("TIME", "600"))
+USER_REPLY_TEXT = os.environ.get(
+    "USER_REPLY_TEXT",
+    "⚠️ This is a File Store Bot\n\n"
+    "You cannot search movies here.\n\n"
+    "🎬 To download movies, go to our channel and check the channel Links.\n\n"
+    "📢 Channel: https://t.me/Tamilmov_Linkz"
 
 # Toggle this feature by setting the value inside to either True (on) or False (off).
 # TRUE for yes FALSE if no
