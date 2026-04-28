@@ -57,6 +57,7 @@ USER_REPLY_TEXT = os.environ.get(
     "You cannot search movies here.\n\n"
     "🎬 To download movies, go to our channel and check the channel Links.\n\n"
     "📢 Channel: https://t.me/Tamilmov_Linkz"
+)
 
 # Toggle this feature by setting the value inside to either True (on) or False (off).
 # TRUE for yes FALSE if no
