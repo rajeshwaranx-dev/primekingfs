@@ -229,12 +229,12 @@ async def start_command(client: Client, message: Message):
         reply_markup = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("💝 Tamilmov_Linkz", url='https://t.me/hi')
+                    InlineKeyboardButton("💝 TamilEvo LinkZz", url='https://t.me/TamilEvo_LinkZz')
                 ],[
                     InlineKeyboardButton("💸 ᴘʀᴇᴍɪᴜᴍ", callback_data="buy_prem"),
                     InlineKeyboardButton("😊 ᴀʙᴏᴜᴛ ᴍᴇ", callback_data="about")
                 ],[
-                    InlineKeyboardButton("🔄️ ꜱᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url='https://github.com/'),
+                    InlineKeyboardButton("🔄️ ꜱᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", url='https://t.me/TamilEvo_LinkZz'),
                     InlineKeyboardButton("🔒 ᴄʟᴏꜱᴇ", callback_data="close")
                 ]
             ]
