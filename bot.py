@@ -1,27 +1,25 @@
 # ────────────────────────────────────────────────────────────────
-
 # ✅ THIS PROJECT IS DEVELOPED AND MAINTAINED BY @trinityXmods (TELEGRAM)
 # 🚫 DO NOT REMOVE OR ALTER THIS CREDIT LINE UNDER ANY CIRCUMSTANCES.
-
 # ⭐ FOR MORE HIGH-QUALITY OPEN-SOURCE BOTS, FOLLOW US ON GITHUB.
 # 🔗 OFFICIAL GITHUB: https://github.com/Trinity-Mods
 # 📩 NEED HELP OR HAVE QUESTIONS? REACH OUT VIA TELEGRAM: @velvetexams
-
 # ────────────────────────────────────────────────────────────────
 
 from aiohttp import web
-from database.database import full_adminbase
+from database.database import full_adminbase, get_db_channels, add_db_channel
 from plugins import web_server
 from pyrogram import Client
 from pyrogram.enums import ParseMode
+from pyrogram.raw import functions
 import sys
 from pyromod import listen
 from datetime import datetime
 
-from config import ADMINS, API_HASH, APP_ID, LOGGER, TG_BOT_TOKEN, TG_BOT_WORKERS, FORCE_SUB_CHANNEL,FORCE_SUB_CHANNEL2, FORCE_SUB_CHANNEL3, FORCE_SUB_CHANNEL4, CHANNEL_ID, PORT, OWNER_ID
+from config import ADMINS, API_HASH, APP_ID, LOGGER, TG_BOT_TOKEN, TG_BOT_WORKERS, FORCE_SUB_CHANNEL, FORCE_SUB_CHANNEL2, FORCE_SUB_CHANNEL3, FORCE_SUB_CHANNEL4, CHANNEL_ID, PORT, OWNER_ID
 
 
-# fix for current pyrogram 
+# fix for current pyrogram
 from pyrogram import utils
 
 def get_peer_type_new(peer_id: int) -> str:
@@ -52,6 +50,10 @@ class Bot(Client):
 
     async def start(self):
         await super().start()
+
+        # ✅ Drop all pending updates accumulated while bot was offline
+        await self.invoke(functions.updates.GetState())
+
         usr_bot_me = await self.get_me()
         self.uptime = datetime.now()
         print(ADMINS)
@@ -104,15 +106,22 @@ class Bot(Client):
                 self.LOGGER(__name__).warning(f"Please Double check the FORCE_SUB_CHANNEL value and Make sure Bot is Admin in channel with Invite Users via Link Permission, Current Force Sub Channel Value: {FORCE_SUB_CHANNEL4}")
                 sys.exit()
         try:
-            db_channel = await self.get_chat(CHANNEL_ID)
-            self.db_channel = db_channel
-            test = await self.send_message(chat_id = db_channel.id, text = "Test Message")
-            await test.delete()
+            saved_channels = await get_db_channels()
+            if not saved_channels:
+                await add_db_channel(CHANNEL_ID)
+                saved_channels = [CHANNEL_ID]
+            self.db_channels = []
+            for ch_id in saved_channels:
+                ch = await self.get_chat(ch_id)
+                self.db_channels.append(ch)
+                test = await self.send_message(chat_id=ch.id, text="Test Message")
+                await test.delete()
+            self.db_channel = self.db_channels[0]
         except Exception as e:
             self.LOGGER(__name__).warning(e)
-            self.LOGGER(__name__).warning(f"Make Sure bot is Admin in DB Channel, and Double check the CHANNEL_ID Value, Current Value {CHANNEL_ID}")
+            self.LOGGER(__name__).warning(f"Make Sure bot is Admin in DB Channel. Error: {e}")
             sys.exit()
-        
+
         initadmin = await full_adminbase()
         for x in initadmin:
             if x in ADMINS:
@@ -127,8 +136,7 @@ class Bot(Client):
         self.LOGGER(__name__).info(f"Bot made by @the_universal_being!")
         self.username = usr_bot_me.username
 
-
-        #web-response
+        # web-response
         app = web.AppRunner(await web_server())
         await app.setup()
         bind_address = "0.0.0.0"
@@ -138,13 +146,11 @@ class Bot(Client):
         await super().stop()
         self.LOGGER(__name__).info("Bot stopped.contact @the_universal_being")
 
-# ────────────────────────────────────────────────────────────────
 
+# ────────────────────────────────────────────────────────────────
 # ✅ THIS PROJECT IS DEVELOPED AND MAINTAINED BY @trinityXmods (TELEGRAM)
 # 🚫 DO NOT REMOVE OR ALTER THIS CREDIT LINE UNDER ANY CIRCUMSTANCES.
-
 # ⭐ FOR MORE HIGH-QUALITY OPEN-SOURCE BOTS, FOLLOW US ON GITHUB.
 # 🔗 OFFICIAL GITHUB: https://github.com/Trinity-Mods
 # 📩 NEED HELP OR HAVE QUESTIONS? REACH OUT VIA TELEGRAM: @velvetexams
-
-# ────────────────────────────────────────────────────────────────
+# ───────────────────────────────────
